@@ -1,6 +1,6 @@
 import os
 from datetime import datetime, timedelta, timezone
-
+from dotenv import load_dotenv
 import bcrypt
 import jwt
 from fastapi import Depends, HTTPException
@@ -10,7 +10,8 @@ from sqlalchemy.orm import Session
 from database import get_db
 from models import User
 
-SECRET_KEY = os.getenv("SECRET_KEY", "dev-secret-change-me")   # read from environment
+load_dotenv()
+SECRET_KEY = os.getenv("SECRET_KEY")   # read from environment
 ALGORITHM = "HS256"
 TOKEN_EXPIRE_MINUTES = 30
 
